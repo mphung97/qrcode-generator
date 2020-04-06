@@ -1,1 +1,1 @@
-# blank-react
+# React QR Code Generator
