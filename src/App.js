@@ -1,16 +1,8 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from "react";
-import {
-  CssBaseline,
-  InputBase,
-  Container,
-  makeStyles,
-  InputAdornment,
-  IconButton,
-  Divider,
-} from "@material-ui/core";
+import { Container, CssBaseline, Divider, IconButton, InputAdornment, InputBase, makeStyles } from "@material-ui/core";
 import { ClearOutlined } from "@material-ui/icons";
 import QRCode from "qrcode.react";
+import React, { useState } from "react";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -30,10 +22,15 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     marginTop: "2rem",
   },
+  button: {
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  },
 }));
 
 function App() {
-  const [input, setInput] = useState("here comes qr!");
+  const [input, setInput] = useState("");
   const [QRValue, setQRValue] = useState(input);
   const classes = useStyles();
 
@@ -52,6 +49,7 @@ function App() {
     e.preventDefault();
     setInput("");
   };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -72,7 +70,10 @@ function App() {
             endAdornment={
               input && (
                 <InputAdornment position="end">
-                  <IconButton onClick={handleClear}>
+                  <IconButton
+                    onClick={handleClear}
+                    classes={{ root: classes.button }}
+                  >
                     <ClearOutlined
                       fontSize="small"
                       style={{ color: "rgba(0, 0, 0, 0.6)" }}
